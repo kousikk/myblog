@@ -1,0 +1,286 @@
+@import url(http://fonts.googleapis.com/css?family=Sintony:400,700);
+@import url(http://fonts.googleapis.com/css?family=Orienta);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/icomoon.eot');
+	src:url('../fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.woff') format('woff'),
+		url('../fonts/icomoon/icomoon.ttf') format('truetype'),
+		url('../fonts/icomoon/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.bitter-heading
+{
+	padding-left: 10px;
+	font-size: 45pt;
+	letter-spacing: -0.04em;
+	font-weight: 400;
+}
+
+.body_wrap{
+	background-attachment:fixed;
+	overflow:scroll;
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+
+hr
+{
+}
+hr.dash
+{
+	margin-left: 0;
+	width: 40%;
+	border-top: 1px dashed white;
+        border-bottom: 1px dashed white;
+}
+hr.thick
+{
+	display: block;
+	padding: 5px;
+	background:  #fb9999;
+	border-color:  #fb9999;
+	border-radius: 10px;
+}
+.bloghead
+{
+	background: white;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.seperator
+{
+	background: white;
+}
+.timestamp
+{
+	background: #00AEFF;
+	width: 80px;
+	height: 80px; 
+	border-radius: 50%;
+}
+.month
+{
+	color: white;
+	font-weight: 400;
+	font-size: 14px;
+}
+.date
+{
+	color: white;
+	font-size: 14px;
+	font-weight: 200;
+}
+.post-title
+{
+	font-weight: 300;
+	font-size: 35px;
+}
+.post-author
+{
+	font-weight: 200;
+	font-size: 12px;
+	line-height: 35px;
+}
+.post-content
+{
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	background: white;
+	font-weight: 300;
+	font-size: 14px;
+}
+
+/* General button style (reset) */
+.btn {
+	border: none;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	font-size: 11px; 
+	color: #89867e;
+	color: inherit;
+	background: #2ecc71;
+	cursor: pointer;
+	padding: 15px 30px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 400;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.btn:disabled {
+	background: #333;
+}
+/* Pseudo elements for icons */
+.btn:before,
+.icon-heart:after,
+.icon-star:after,
+.icon-plus:after,
+.icon-file:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+}
+
+.icon-arrow-right:before {
+	content: "\e00d";
+}
+
+.icon-arrow-left:before {
+	content: "\e003";
+}
+/* Button 4 */
+.btn-4 {
+	border-radius: 50px;
+	border: 3px solid #fff;
+	color: #fff;
+	overflow: hidden;
+}
+
+.btn-4:active {
+	border-color: #17954c;
+	color: #17954c;
+}
+
+.btn-4:hover {
+	background: #24b662;
+}
+
+.btn-4:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3.5;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-4:active:before {
+	color: #17954c;
+}
+
+/* Button 4a */
+.btn-4a:before {
+	left: 130%;
+	top: 0;
+}
+
+.btn-4a:hover:before {
+	left: 80%;
+}
+
+/* Button 4b */
+.btn-4b:before {
+	left: -50%;
+	top: 0;
+}
+
+.btn-4b:hover:before {
+	left: 10%;
+}
+
+/* HEADER */
+.cbp-af-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #f6f6f6;
+	z-index: 10000;
+	height: 230px;
+	overflow: hidden;
+	-webkit-transition: height 0.3s;
+	-moz-transition: height 0.3s;
+	transition: height 0.3s;
+	font-weight: 300;
+}
+
+.cbp-af-header .cbp-af-inner {
+	width: 90%;
+	max-width: 69em;
+	margin: 0 auto;
+	padding: 0 1.875em;
+}
+
+.cbp-af-header h1,
+.cbp-af-header nav {
+	display: inline-block;
+	position: relative;
+}
+
+ /* We just have one-lined elements, so we'll center the elements with the line-height set to the height of the header */
+.cbp-af-header h1,
+.cbp-af-header nav a {
+	line-height: 210px;
+}
+
+.cbp-af-header h1 {
+	text-transform: uppercase;
+	color: #333;
+	letter-spacing: 4px;
+	font-size: 4em;
+	margin: 0;
+	float: left;
+}
+
+.cbp-af-header nav {
+	float: right;
+}
+
+.cbp-af-header nav a {
+	color: #aaa;
+	font-weight: 400;
+	margin: 0 0 0 20px;
+	font-size: 1.4em;
+}
+
+.cbp-af-header nav a:hover {
+	color: #333;
+}
+
+/* Transitions and class for reduced height */
+.cbp-af-header h1,
+.cbp-af-header nav a {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.cbp-af-header.cbp-af-header-shrink {
+	height: 90px;
+}
+
+.cbp-af-header.cbp-af-header-shrink h1,
+.cbp-af-header.cbp-af-header-shrink nav a {
+	line-height: 90px;
+}
+
+.cbp-af-header.cbp-af-header-shrink h1 {
+	font-size: 2em;
+}
+
