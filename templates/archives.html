@@ -14,12 +14,72 @@
     <!-- main JS libs -->
 
     <!-- Style CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300' rel='stylesheet' type='text/css' />
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}" media="screen" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/extra-css.css') }}" media="screen" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/timeline.css') }}" media="screen" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/windy.css') }}" media="screen" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/demo.css') }}" media="screen" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style1.css') }}" media="screen" rel="stylesheet">
 
     <!-- scripts -->
     <script src="{{ url_for('static', filename='js/libs/general.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/modernizr.custom.79639.js') }}"></script>
+    <noscript><link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/noJS.css') }}" /></noscript>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.windy.js') }}"></script>
+    <script type="text/javascript">	
+			$(function() {
+
+				var $el = $( '#wi-el' ),
+					windy = $el.windy(),
+					allownavnext = false,
+					allownavprev = false;
+
+				$( '#nav-prev' ).on( 'mousedown', function( event ) {
+
+					allownavprev = true;
+					navprev();
+				
+				} ).on( 'mouseup mouseleave', function( event ) {
+
+					allownavprev = false;
+				
+				} );
+
+				$( '#nav-next' ).on( 'mousedown', function( event ) {
+
+					allownavnext = true;
+					navnext();
+				
+				} ).on( 'mouseup mouseleave', function( event ) {
+
+					allownavnext = false;
+				
+				} );
+
+				function navnext() {
+					if( allownavnext ) {
+						windy.next();
+						setTimeout( function() {	
+							navnext();
+						}, 150 );
+					}
+				}
+				
+				function navprev() {
+					if( allownavprev ) {
+						windy.prev();
+						setTimeout( function() {	
+							navprev();
+						}, 150 );
+					}
+				}
+
+			});
+		</script>
 
     <!-- Include all needed stylesheets and scripts here -->
 
@@ -34,19 +94,6 @@
 
 <body>
 	<div class = "body_wrap">
-		<div class="container">
-			<div class="cbp-af-header">
-				<div class="cbp-af-inner">
-					<h1>My Licensed Blog</h1>
-					<nav>
-						<a href="/">Home</a>
-						<a href="/archives">Posts</a>
-						<a href="/about">About</a>
-					</nav>
-				</div>
-			</div>
-		    <script src="{{ url_for('static', filename = 'js/classie.js') }}"></script>
-		    <script src="{{ url_for('static', filename = 'js/cbpAnimatedHeader.min.js') }}"></script>
-		</div>
-		<br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br>
+		<br><br><br>
+		<center><h1><div style="font-size: 50px">Blog Archives</div></h1></center><hr>
+

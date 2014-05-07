@@ -88,14 +88,8 @@ def getPrevNext(prev, nxt, pid):
 def getTimelineBoilerPlate(pid, month, year, title, meta):
 	href = "/post/" + str(pid)
 	returnHTML = "\t\t\t\t\t<li>\n \
-			\t\t\t<time class=\"cbp_tmtime\"><span>" + month + "</span> <span>"+year+"</span></time>\n \
-		\t\t\t\t<div class=\"cbp_tmicon cbp_tmicon-phone\"></div>\n \
-		\t\t\t\t<div class=\"cbp_tmlabel\">\n \
-		\t\t\t\t\t<div class=\"post-title\"><a href=\"" + href + "\" target=\"_newtab\">" + title + "</a></div>\n \
-		\t\t\t\t\t<hr>\n \
-		\t\t\t\t\t<p>" + meta + "</p>\n \
-		\t\t\t\t</div>\n \
-		\t\t\t</li>\n"
+			\t\t\t<h2><a href=\"" + href + "\" target=\"_newtab\">" + title + "</a></h2>\n \
+			<p><h5>Written on " + month + " " + year + "</h5></p></li>"
 	return returnHTML
 
 def getDisqus():
@@ -103,14 +97,12 @@ def getDisqus():
 		<div class=\"row bloghead col-md-9\">\n \
 		<div id=\"disqus_thread\"></div>\n \
 		<script type=\"text/javascript\">\n \
-        	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */\n \
-        	var disqus_shortname = 'plicense'; // required: replace example with your forum shortname\n \
-        	/* * * DON'T EDIT BELOW THIS LINE * * */ \n \
-        	(function() {\n \
-            	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;\n \
-            	dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';\n \
-            	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);\n \
- 	       	})();\n \
+		var disqus_shortname = 'kousikk'; // required: replace example with your forum shortname\n \
+		(function() {\n \
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;\n \
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';\n \
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);\n \
+		})();\n \
 		</script>\n \
 		<noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>\n \
 		<a href=\"http://disqus.com\" class=\"dsq-brlink\">comments powered by <span class=\"logo-disqus\">Disqus</span></a>\n \
@@ -135,14 +127,19 @@ def getArchives(db):
 		blogList = blogList[::-1]
 
 		returnHTML += "\n\t\t<div class = \"container\">\n \
-			<div class = \"main\">\n \
-			\t<ul class = \"cbp_tmtimeline post-content\">\n"
+			\t\t\t<section class = \"main\">\n \
+			\t\t\t<div class = \"windy-demo\">\n \
+			\t\t\t\t<ul id=\"wi-el\" class=\"wi-container\">"
 		for item in blogList:
 			returnHTML += getTimelineBoilerPlate(pid = item[0], month = item[2], year = item[3], title = item[1], meta = item[4])
-		
-		returnHTML += "\t\t\t\t</ul>\n \
-			</div>\n \
-		</div> \n "
+	
+		returnHTML += "\t\t\t\t</ul>\n"	
+		returnHTML += "\t\t\t<nav>\n \
+				\t<span id=\"nav-prev\">prev</span>\n \
+				\t<span id=\"nav-next\">next</span>\n \
+			      </nav></div>"		
+		returnHTML += "</section>\n \
+		</div>\n"
 		returnHTML += getClosingTags()
 	except:
 		print sys.exc_info()[0]
@@ -157,7 +154,7 @@ def getPost(db, pid):
 
 		conn = connectdb(db)
 		cursor = conn.cursor()
-
+		print pid
 		query = 'select t1.id, t1.author, t1.month, t1.year, t1.title, \
 			t1.meta, t1.content from blog t1 \
 			where id = ' + str(pid);
@@ -184,6 +181,7 @@ def getPost(db, pid):
 		returnHTML += getHR()
 		returnHTML += getClosingTags()
 	except:
+		print "Error in getPost"
 		print sys.exc_info()[0]
 		returnHTML = render_template('error.html')
 	
@@ -200,7 +198,9 @@ def getBlogData(db, home):
 		post_count = cursor.execute(query).fetchall()[0][0]
 		
 		returnHTML = getPost(db, post_count)
-	except:
-		returnHTML = render_template('error.html')
+	except Exception, err:
+		print "Error in getBlogData()"
+		print sys.exc_info()[0]
+		returnHTML += render_template('error.html')
 	
 	return returnHTML 
