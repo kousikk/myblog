@@ -1,12 +1,19 @@
 from os import path
-from flask import Flask, render_template, render_template_string
+from flask import Flask, render_template, render_template_string, send_from_directory
 from blog import getBlogData, getPost, getArchives
 
 app = Flask(__name__)
 
+@app.route('/download/<path:filename>')
+def download(filename):
+	global HOME, DATABASE
+	HOME = path.expanduser('~') + '/'
+	DATABASE = HOME + 'blog.db'
+	return send_from_directory(path.join(HOME, "public_html/http/download/"), filename)
+
 @app.route('/favicon.ico')
 def favicon():
-	return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+	return send_from_directory(path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/archives')
 def archives():
